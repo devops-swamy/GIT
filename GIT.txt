@@ -114,6 +114,25 @@ How to Clone the branch(readme-edits) other than 'master' and modify the files a
 	6.3. git push https://github.com/MainLine-FP9/new_repo.git +Us_Dev:master
 		 git push tps://github.com/venkatasykam/new_repo.git +Us_Dev:master
 
-7. Merge from one organization/repo to anotherOrganization/repo.
+7. Branch to branch merge: https://help.github.com/articles/merging-a-pull-request/
 
-	7.1. There should be a fork betweeen the two repos. Ex: 
+	7.1. https://github.com/venkatasykam/JarProjects has 3 branches. Us_Branch and Mx_Branch and master.
+	7.2. Updated a java file on "Us_Branch" and commited the changes. 
+	7.3. Master needs to be updated with "Us_Branch". Now, create Pull Request.
+	7.4. Here, "master" should be "base" and "compare" should be "Us_Branch". Otehrwise, GITHUB will not allow merge.
+	7.5. Now, "Us_Branch" & "Mx_Branch" have changes individually. Added a comment in the same line and both have different content.
+		7.5.1. If Auto-merge is NOT possible in this case, we have to update the file(s) Manually and resolve the conflicts.
+		Ex: base:Mx-branch , compare:Us_Branch
+		The manually resolved conflicts(i.e., the changes) will be saved to both the branches to not to repeat this same conflict again in future.
+		
+		7.5.2. If Auto-merge is possible, only the "base" branch will be merged with the changes from "compare". The changes in "compare:Us_Branch" will be remain same.
+
+8. Merge from one organization/repo to anotherOrganization/repo.
+
+	8.1. There should be a fork betweeen the two organizations. Ex: Created a fork b/w https://github.com/venkatasykam/JarProjects, and https://github.com/MainLine-FP9/, then the "JarProjects" has been created newly on https://github.com/MainLine-FP9/JarProjects. If the repo "JarProjects" is lareayd there in "MainLine-FP9", then GIT will create a new repo as "JarProjects-1". [Once if you create a "fork" b/w organization, we cant un-fork even if you re-name the repo.]
+	8.2. Made some changes in one java file "AddNumbers.java" from "venkatasykam/JarProjects". Now, Open a pull request.
+	8.3. Pull the changes from "venkatasykam/JarProjects" into "MainLine-FP9/JarProjects".
+	8.4. Now, making some chnages in one java file "AddNumbers.java" from "MainLine-FP9/JarProjects". Now, Open a pull request.
+	8.5. Pull the changes from "MainLine-FP9/JarProjects" into "venkatasykam/JarProjects".
+	8.6. Making changes in both the repos. Added a comment in the same line and both have different content.
+	8.7. Auto-merge is not possible in this case. Manually we have to update the file(s) and resolve the conflict(s).
