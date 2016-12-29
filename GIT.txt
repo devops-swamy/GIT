@@ -4,7 +4,7 @@ Practice-1.1:-
 -->Checkout the code to your machine:
 	1.1. Clone the branch you want.
 		git clone -b <brach_name> --single-branch <git_repo> <destination>
-		Ex: git clone -b Mx_Dev --single-branch https://github.com/venkatasykam/hello-world.git /d/hari/git/dummy/hello-world_mx
+		Ex: git clone -b Mx_Dev --single-branch https://github.com/venkatasykam/JarProjects.git /d/hari/git/dummy/JarProjects_mx
 
 -->Update coded & check-in to git "local" repo:-
 	1.2 Update the code on local, commit to local repo and then push to your git repo.
@@ -17,10 +17,10 @@ Practice-1.1:-
 -->Push the local repo to GIT repo.
 	git push.
 
-Switch to other branch: git checkout -b <branchName>
+Switch to other branch: git checkout <branchName>
 
 Practice-1.2:-
-How to Clone the branch(readme-edits) other than 'master' and modify the files and then commit to the repository 'readme-edits'.
+How to Clone the branch(Dev_Branch) other than 'master' and modify the files and then commit to the repository 'Dev_Branch'.
 
 	2.1. Clone: http://stackoverflow.com/questions/17383217/clone-from-a-branch-other-than-master
 
@@ -136,3 +136,42 @@ How to Clone the branch(readme-edits) other than 'master' and modify the files a
 	8.5. Pull the changes from "MainLine-FP9/JarProjects" into "venkatasykam/JarProjects".
 	8.6. Making changes in both the repos. Added a comment in the same line and both have different content.
 	8.7. Auto-merge is not possible in this case. Manually we have to update the file(s) and resolve the conflict(s).
+
+9. Merge from one git repo to another repo.
+
+	Basic example: merge repo B into repo A
+	git clone A
+	git clone B
+	cd A
+	git remote add B ../B
+	git fetch B
+	git branch B-master B/master [whichever branch you want to merge]
+	git merge B-master
+----------------------OR
+	cd path/to/project-b
+	git remote add project-a path/to/project-a
+	git fetch project-a
+	git merge --allow-unrelated-histories project-a/master # or whichever branch you want to merge
+	git remote remove project-a
+
+10. Git: ignore some files during a merge [not working]
+
+	Let's say you want to exclude the file config.php
+
+
+	-->On branch A:
+
+		1. Create a file named '.gitattributes' in the same dir, with this line: config.php merge=ours. This tells git what strategy to use when mergin the file. In this case it always keep your version, ie. the version on the branch you are merging into.
+		2. Add the .gitattributes file and commit.
+
+	-->On branch B: repeat steps 1-2
+
+	Try merging now. Your file should be left untouched.
+
+	git merge --no-commit <merge-branch>
+	git reset HEAD myfile.txt
+	git checkout -- myfile.txt
+	git commit -m "merged <merge-branch>"
+
+10. http://stackoverflow.com/questions/8781240/a-way-to-restrict-git-branch-access
+https://help.github.com/articles/defining-the-mergeability-of-pull-requests/
