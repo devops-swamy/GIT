@@ -173,5 +173,14 @@ How to Clone the branch(Dev_Branch) other than 'master' and modify the files and
 	git checkout -- myfile.txt
 	git commit -m "merged <merge-branch>"
 
-10. http://stackoverflow.com/questions/8781240/a-way-to-restrict-git-branch-access
+http://stackoverflow.com/questions/8781240/a-way-to-restrict-git-branch-access
 https://help.github.com/articles/defining-the-mergeability-of-pull-requests/
+
+
+11. git log --diff-filter=D --summary | grep delete
+http://stackoverflow.com/questions/31250359/git-repository-how-to-recover-deleted-files
+
+12. Create new repository from particular branch of another repository. 
+http://stackoverflow.com/questions/9527999/how-do-i-create-a-new-github-repo-from-a-branch-in-an-existing-repo
+
+13. Merge from one branch to another branch:
