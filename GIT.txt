@@ -33,8 +33,13 @@ How to Clone the branch(Dev_Branch) other than 'master' and modify the files and
 				Ex: git clone https://github.com/venkatasykam/hello-world.git Dev_Branch
 
 			git branch -l
+			git checkout <branchname> or git checkout -b <branchname> 
+			[
+			This is shorthand for: 
+			git branch <branchname>
 			git checkout <branchname>
-				Ex: git checkout Dev_Branch
+			]
+				Ex: git checkout -b Dev_Branch
 			git branch -l
 
 		Option-2:- Clone the particular branch
@@ -48,6 +53,8 @@ How to Clone the branch(Dev_Branch) other than 'master' and modify the files and
 			git commit -am "updated AddNumbers.java file with subtraction method"
 
 	2.3. git push
+
+	Delete a branh: git branch -d <branchname>
 
 2. DIFF: (Create patch file and apply patch file):
 
@@ -102,7 +109,7 @@ How to Clone the branch(Dev_Branch) other than 'master' and modify the files and
 	5.2. Settings-->Danzer Zone-->Click on "Transfer" button at "Transfer ownership".
 	5.3. In the window-->enter the repo name "JarProjects" and target "organization" name "Maintenance-FP9".
 
-6. Creating a new repo(in same organization or other organization) from exisitng repo at particular branch.
+6. Creating a new repo(in same organization or other organization) from exisitng repo with particular branch.
  http://stackoverflow.com/questions/9527999/how-do-i-create-a-new-github-repo-from-a-branch-in-an-existing-repo
  
 	6.1. Create a new_repo. 
@@ -183,4 +190,76 @@ http://stackoverflow.com/questions/31250359/git-repository-how-to-recover-delete
 12. Create new repository from particular branch of another repository. 
 http://stackoverflow.com/questions/9527999/how-do-i-create-a-new-github-repo-from-a-branch-in-an-existing-repo
 
-13. Merge from one branch to another branch:
+13. Merge from one branch to another branch: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+https://git-scm.com/book/en/v2/Git-Tools-Rerere
+After you resolved the conflict manually run the command "git add <fine_name>". Or use the TortoiseGit to resolve the conflicts.
+
+git branch -->list all the branches
+git branch -v -->To see the last commit on each branch
+git branch --merged and --no-merged -->options can filter this list to branches that you have or have not yet merged into the branch you’re currently on.
+git branch -d <branch_name> -->Delete the branch. Delete will be failed, If the branch <branch_name> is not yet merged to another branch.
+git branch -D testing -->Delete the branch by force.
+
+14. Restore deleted branch. http://stackoverflow.com/questions/4674226/does-github-keep-deleted-remote-branches-in-history-if-so-can-those-be-restore
+
+-->git reflog show --all
+-->Choose the commit ID from the result.
+
+15. How to create an empty branch http://www.bitflop.dk/tutorials/how-to-create-a-new-and-empty-branch-in-git.html
+
+git checkout --orphan NEWBRANCH
+git rm -rf .
+
+20 jars projects are there in 'master' branch. [as per my requirement, 15 jars should be in Us_Dev, and 16 in Hk_Dev branch].
+
+-->cloned the 'master' to local machine.
+-->git checkout --orphan Us_Dev.
+-->git rm -rf .
+-->git add . -->Copied and added 15 jas to Us_Dev branch.
+-->git commit -m "adding local projects to github Us_Dev branch repo".
+-->git push --set-upstream origin Us_Dev.
+
+done some chanegs in jar16 project, now I wanted to merge the changes to master.
+
+-->git checkout master
+-->git merge --no-commit Us_Dev or git merge --no-commit --allow-unrelated-histories Us_Dev.
+-->git reset HEAD pom.xml [root pom]
+-->git reset HEAD */pom.xml [all other poms]
+-->git reset HEAD artifacts.txt [other files if any]
+-->git checkout -- artifacts.txt
+-->git checkout -- */pom.xml
+-->git checkout -- pom.xml
+-->git commit -m "merged the chnages from jar16 project from us_dev to master".
+
+If you are sure that you want to overwrite selected folder/file, then you do as below.
+//pull the latest changes on Us_Dev from remore repo
+-->git checkout Us_Dev
+-->git pull
+//pull the latest changes on master from remore repo
+-->git checkout master
+-->git pull
+//merge the changes from Us_Dev to master only on  JarProject16
+-->git checkout Us_Dev -- JarProject16
+-->git reset HEAD JarProject16/pom.xml
+-->git checkout -- JarProject16/pom.xml
+-->git commit -m "'Merge' these changes from us_dev to master on jar proejct16"
+-->git push
+
+If you are sure that you want to merge selected folder/file, then merge do as below.
+//pull the latest changes on Us_Dev from remore repo
+-->git checkout Us_Dev
+-->git pull
+//pull the latest changes on master from remore repo
+-->git checkout master
+-->git pull
+//merge the changes from Us_Dev to master only on  JarProject16
+-->navogate to specific project JarProject16.. cd JarProject16
+-->git merge --no-commit --allow-unrelated-histories Us_Dev
+-->git reset HEAD JarProject16/pom.xml
+-->git checkout -- JarProject16/pom.xml
+-->git commit -m "'Merge' these changes from us_dev to master on jar proejct16"
+-->git push
+
+16. pull requests:
+https://help.github.com/articles/approving-a-pull-request-with-required-reviews/
+https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/
