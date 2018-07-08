@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Deploy') {
       parallel {
-        stage('Deploy') {
+        stage('Deploy-nexus') {
           steps {
             echo 'Deploy the package to nexus'
           }
