@@ -1,7 +1,9 @@
 import jenkins.model.*
 
+def jobName = env.getProperty("jobName")
+    
 def matchedJobs = Jenkins.instance.items.findAll { job ->
-    job.name =~ /Maven/
+    job.name =~ /jobName/
 }
 
 matchedJobs.each { job ->
