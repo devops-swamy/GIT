@@ -1,6 +1,6 @@
 import jenkins.model.*
 
-def jobName = env.getProperty("jobName")
+def jobName = env.getProperty("jobName").toString();
     
 def matchedJobs = Jenkins.instance.items.findAll { job ->
     job.name =~ /jobName/
