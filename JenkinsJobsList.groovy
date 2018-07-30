@@ -1,6 +1,6 @@
 import jenkins.model.*
 
-def jobName = System.getenv("jobName").toString();
+def jobName = build.getEnvironment(listener).get("jobName");
     
 println "jobName"+jobName
     
